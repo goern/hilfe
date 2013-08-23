@@ -5,6 +5,8 @@
 //  Created by Christoph Görn on 23.08.13.
 //  Copyright (c) 2013 erd/G/eschoss. All rights reserved.
 //
+//  http://www.appcoda.com/how-to-get-current-location-iphone-user/
+//
 
 #import "b4MainViewController.h"
 
@@ -18,6 +20,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+    [self.locationManager startUpdatingLocation];
+    
+    self.locationManager.delegate = self;
+    self.location = [[CLLocation alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,6 +73,23 @@
     } else {
         [self performSegueWithIdentifier:@"showAlternate" sender:sender];
     }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = locations.lastObject;
+    NSLog(@"%@", self.location.description);
+    
+    self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
+    self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
 }
 
 @end
