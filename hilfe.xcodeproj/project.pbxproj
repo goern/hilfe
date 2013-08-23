@@ -25,6 +25,8 @@
 		8F26404D17C7955900959E02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26402217C7955900959E02 /* Foundation.framework */; };
 		8F26405517C7955900959E02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F26405317C7955900959E02 /* InfoPlist.strings */; };
 		8F26405817C7955900959E02 /* hilfeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26405717C7955900959E02 /* hilfeTests.m */; };
+		8F26406217C7C99800959E02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406117C7C99800959E02 /* CoreLocation.framework */; };
+		8F26406417C7CDE300959E02 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406317C7CDE300959E02 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		8F26405417C7955900959E02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8F26405617C7955900959E02 /* hilfeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hilfeTests.h; sourceTree = "<group>"; };
 		8F26405717C7955900959E02 /* hilfeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hilfeTests.m; sourceTree = "<group>"; };
+		8F26406117C7C99800959E02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8F26406317C7CDE300959E02 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F26406417C7CDE300959E02 /* iAd.framework in Frameworks */,
+				8F26406217C7C99800959E02 /* CoreLocation.framework in Frameworks */,
 				8F26402117C7955900959E02 /* UIKit.framework in Frameworks */,
 				8F26402317C7955900959E02 /* Foundation.framework in Frameworks */,
 				8F26402517C7955900959E02 /* CoreGraphics.framework in Frameworks */,
@@ -111,10 +117,12 @@
 		8F26401F17C7955900959E02 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F26406317C7CDE300959E02 /* iAd.framework */,
 				8F26402017C7955900959E02 /* UIKit.framework */,
 				8F26402217C7955900959E02 /* Foundation.framework */,
 				8F26402417C7955900959E02 /* CoreGraphics.framework */,
 				8F26404A17C7955900959E02 /* SenTestingKit.framework */,
+				8F26406117C7C99800959E02 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -474,6 +482,7 @@
 				8F26405D17C7955900959E02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8F26405E17C7955900959E02 /* Build configuration list for PBXNativeTarget "hilfeTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +491,7 @@
 				8F26406017C7955900959E02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
