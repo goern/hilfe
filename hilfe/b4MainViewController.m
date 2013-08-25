@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 erd/G/eschoss. All rights reserved.
 //
 //  http://www.appcoda.com/how-to-get-current-location-iphone-user/
+//  http://www.iosdevnotes.com/2011/10/ios-corelocation-tutorial/
+//  https://github.com/nomad/houston
 //
 
 #import "b4MainViewController.h"
@@ -19,20 +21,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.locationManager.delegate = self;
+    
+    self.location = [[CLLocation alloc] init];
     
     [self.locationManager startUpdatingLocation];
     
-    self.locationManager.delegate = self;
-    self.location = [[CLLocation alloc] init];
+}
+
+- (void)dealloc
+{
+    self.locationManager.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// called when the app is moved to the background (user presses the home button) or to the foreground
+//
+- (void)switchToBackgroundMode:(BOOL)background
+{    
+    if (background)
+    {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"updateIfApplicationIsInBackground"])
+        {
+            [self.locationManager stopUpdatingLocation];
+            self.locationManager.delegate = nil;
+        }
+    }
+    else
+    {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"updateIfApplicationIsInBackground"])
+        {
+            self.locationManager.delegate = self;
+            [self.locationManager startUpdatingLocation];
+        }
+    }
 }
 
 #pragma mark - Flipside View Controller
@@ -75,13 +105,36 @@
     }
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
 {
-    self.location = locations.lastObject;
-    NSLog(@"%@", self.location.description);
-    
-    self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
-    self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
+    if (newLocation)
+    {
+        // make sure the old and new coordinates are different
+        if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
+            (oldLocation.coordinate.longitude != newLocation.coordinate.longitude))
+        {
+            self.location = newLocation;
+            NSLog(@"%@", self.location.description);
+            
+            self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
+            self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
+            
+            b4Location* b4location = [b4Location alloc];
+            b4location.lon = self.lon.text;
+            b4location.lat = self.lat.text;
+            
+            [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
+                                           bodyString: b4location.toJSONString
+                                           completion:^(NSDictionary *json, JSONModelError* e) {
+                                               NSDictionary* result = json[@"result"];
+                                               for (id key in result) { // log the result
+                                                   NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
+                                               }
+                                           }];
+        }
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -91,5 +144,6 @@
                                initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
 }
+
 
 @end

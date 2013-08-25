@@ -18,6 +18,13 @@
 
 @property (weak, nonatomic) id <b4FlipsideViewControllerDelegate> delegate;
 
+@property (nonatomic, strong) IBOutlet UISwitch *toggleBackgroundButton;
+@property (nonatomic, strong) IBOutlet UISlider *updateFrequencySlider;
+
 - (IBAction)done:(id)sender;
+
+- (IBAction)toggleBackgroundButton:(id)sender;
+
+- (IBAction)sliderChanged:(id)sender;
 
 @end

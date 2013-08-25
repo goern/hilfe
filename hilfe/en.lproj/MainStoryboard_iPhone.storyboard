@@ -12,14 +12,14 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10">
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="6" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="11"/>
@@ -76,7 +76,7 @@
                         <subviews>
                             <navigationBar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="12">
                                 <items>
-                                    <navigationItem title="Information" id="13">
+                                    <navigationItem title="Preferences" id="13">
                                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="14">
                                             <connections>
                                                 <action selector="done:" destination="6" id="16"/>
@@ -85,39 +85,77 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Background Updates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsm-jK-AnD">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0zB-kU-vEZ">
+                                <connections>
+                                    <action selector="toggleBackgroundButton:" destination="6" eventType="valueChanged" id="O8S-Bp-hxB"/>
+                                </connections>
+                            </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Turn on or off tracking/updating your current location while this application is suspended." translatesAutoresizingMaskIntoConstraints="NO" id="IJB-Az-XsJ">
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="UFm-1C-p3L"/>
+                                    <constraint firstAttribute="height" constant="70" id="xlV-Ne-zKy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Set the frequency of location updates." translatesAutoresizingMaskIntoConstraints="NO" id="PB7-9a-DYM">
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="Nxf-MX-THD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Update Frequency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsp-oG-e12">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="IEe-pH-oQ9">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="owR-Hp-ZvI"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="6" eventType="valueChanged" id="PJS-dp-DDO"/>
+                                </connections>
+                            </slider>
                         </subviews>
-                        <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="IEe-pH-oQ9" firstAttribute="centerX" secondItem="Lsp-oG-e12" secondAttribute="centerX" type="default" id="68f-EJ-0Ue"/>
+                            <constraint firstItem="Jsm-jK-AnD" firstAttribute="top" secondItem="12" secondAttribute="bottom" type="default" id="Kry-Z3-93h"/>
+                            <constraint firstItem="IJB-Az-XsJ" firstAttribute="centerX" secondItem="0zB-kU-vEZ" secondAttribute="centerX" type="default" id="MJG-Jg-AuX"/>
+                            <constraint firstItem="0zB-kU-vEZ" firstAttribute="top" secondItem="Jsm-jK-AnD" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="QRj-1y-oXW"/>
+                            <constraint firstItem="PB7-9a-DYM" firstAttribute="trailing" secondItem="IJB-Az-XsJ" secondAttribute="trailing" type="default" id="WAd-n8-4Kj"/>
+                            <constraint firstItem="Lsp-oG-e12" firstAttribute="top" secondItem="IJB-Az-XsJ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="k7X-Vk-GqO"/>
                             <constraint firstItem="12" firstAttribute="leading" secondItem="7" secondAttribute="leading" type="default" id="kyL-VC-rMY"/>
+                            <constraint firstItem="IJB-Az-XsJ" firstAttribute="top" secondItem="0zB-kU-vEZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="msC-G2-5DG"/>
+                            <constraint firstItem="IJB-Az-XsJ" firstAttribute="leading" secondItem="PB7-9a-DYM" secondAttribute="leading" type="default" id="nhK-5a-KtS"/>
                             <constraint firstItem="12" firstAttribute="top" secondItem="7" secondAttribute="top" type="default" id="oQ7-QK-1Ab"/>
+                            <constraint firstItem="Jsm-jK-AnD" firstAttribute="centerX" secondItem="12" secondAttribute="centerX" type="default" id="ov9-Ic-AeN"/>
+                            <constraint firstItem="0zB-kU-vEZ" firstAttribute="centerX" secondItem="Jsm-jK-AnD" secondAttribute="centerX" type="default" id="pmB-yv-zgH"/>
+                            <constraint firstItem="IEe-pH-oQ9" firstAttribute="top" secondItem="Lsp-oG-e12" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qkE-Ei-x2r"/>
+                            <constraint firstItem="PB7-9a-DYM" firstAttribute="top" secondItem="IEe-pH-oQ9" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="w96-hE-DbU"/>
+                            <constraint firstItem="IEe-pH-oQ9" firstAttribute="centerX" secondItem="PB7-9a-DYM" secondAttribute="centerX" type="default" id="xZr-53-Hxq"/>
                             <constraint firstItem="12" firstAttribute="trailing" secondItem="7" secondAttribute="trailing" type="default" id="yf5-Bx-wHg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="toggleBackgroundButton" destination="0zB-kU-vEZ" id="5DU-Ku-pB3"/>
+                        <outlet property="updateFrequencySlider" destination="IEe-pH-oQ9" id="JBe-ty-KpU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368" y="182"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="b4FlipsideViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/b4FlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-            </relationships>
-        </class>
-        <class className="b4MainViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/b4MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="togglePopover:"/>
-                <relationship kind="outlet" name="lat" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lon" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -17,7 +17,6 @@
 		8F26403517C7955900959E02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F26403417C7955900959E02 /* Default@2x.png */; };
 		8F26403717C7955900959E02 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F26403617C7955900959E02 /* Default-568h@2x.png */; };
 		8F26403A17C7955900959E02 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F26403817C7955900959E02 /* MainStoryboard_iPhone.storyboard */; };
-		8F26403D17C7955900959E02 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F26403B17C7955900959E02 /* MainStoryboard_iPad.storyboard */; };
 		8F26404017C7955900959E02 /* b4MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26403F17C7955900959E02 /* b4MainViewController.m */; };
 		8F26404317C7955900959E02 /* b4FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26404217C7955900959E02 /* b4FlipsideViewController.m */; };
 		8F26404B17C7955900959E02 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26404A17C7955900959E02 /* SenTestingKit.framework */; };
@@ -27,6 +26,17 @@
 		8F26405817C7955900959E02 /* hilfeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26405717C7955900959E02 /* hilfeTests.m */; };
 		8F26406217C7C99800959E02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406117C7C99800959E02 /* CoreLocation.framework */; };
 		8F26406417C7CDE300959E02 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406317C7CDE300959E02 /* iAd.framework */; };
+		8FF50CA117C8B56700667E56 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C8A17C8B56700667E56 /* JSONModel.m */; };
+		8FF50CA217C8B56700667E56 /* JSONModelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C8C17C8B56700667E56 /* JSONModelArray.m */; };
+		8FF50CA317C8B56700667E56 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C8E17C8B56700667E56 /* JSONModelClassProperty.m */; };
+		8FF50CA417C8B56700667E56 /* JSONModelError.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9017C8B56700667E56 /* JSONModelError.m */; };
+		8FF50CA517C8B56700667E56 /* NSArray+JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9317C8B56700667E56 /* NSArray+JSONModel.m */; };
+		8FF50CA617C8B56700667E56 /* JSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9717C8B56700667E56 /* JSONAPI.m */; };
+		8FF50CA717C8B56700667E56 /* JSONHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9917C8B56700667E56 /* JSONHTTPClient.m */; };
+		8FF50CA817C8B56700667E56 /* JSONModel+networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9B17C8B56700667E56 /* JSONModel+networking.m */; };
+		8FF50CA917C8B56700667E56 /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50C9E17C8B56700667E56 /* JSONKeyMapper.m */; };
+		8FF50CAA17C8B56700667E56 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50CA017C8B56700667E56 /* JSONValueTransformer.m */; };
+		8FF50CAD17C8B6D500667E56 /* b4Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF50CAC17C8B6D500667E56 /* b4Location.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +64,6 @@
 		8F26403417C7955900959E02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F26403617C7955900959E02 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8F26403917C7955900959E02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		8F26403C17C7955900959E02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8F26403E17C7955900959E02 /* b4MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = b4MainViewController.h; sourceTree = "<group>"; };
 		8F26403F17C7955900959E02 /* b4MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = b4MainViewController.m; sourceTree = "<group>"; };
 		8F26404117C7955900959E02 /* b4FlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = b4FlipsideViewController.h; sourceTree = "<group>"; };
@@ -67,6 +76,32 @@
 		8F26405717C7955900959E02 /* hilfeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hilfeTests.m; sourceTree = "<group>"; };
 		8F26406117C7C99800959E02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8F26406317C7CDE300959E02 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		8F26406517C7D7DC00959E02 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		8F26406617C7D7DC00959E02 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8F26406717C7D7DD00959E02 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8FF50C8917C8B56700667E56 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
+		8FF50C8A17C8B56700667E56 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
+		8FF50C8B17C8B56700667E56 /* JSONModelArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelArray.h; sourceTree = "<group>"; };
+		8FF50C8C17C8B56700667E56 /* JSONModelArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelArray.m; sourceTree = "<group>"; };
+		8FF50C8D17C8B56700667E56 /* JSONModelClassProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelClassProperty.h; sourceTree = "<group>"; };
+		8FF50C8E17C8B56700667E56 /* JSONModelClassProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelClassProperty.m; sourceTree = "<group>"; };
+		8FF50C8F17C8B56700667E56 /* JSONModelError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelError.h; sourceTree = "<group>"; };
+		8FF50C9017C8B56700667E56 /* JSONModelError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModelError.m; sourceTree = "<group>"; };
+		8FF50C9217C8B56700667E56 /* NSArray+JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JSONModel.h"; sourceTree = "<group>"; };
+		8FF50C9317C8B56700667E56 /* NSArray+JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JSONModel.m"; sourceTree = "<group>"; };
+		8FF50C9417C8B56700667E56 /* JSONModelLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelLib.h; sourceTree = "<group>"; };
+		8FF50C9617C8B56700667E56 /* JSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAPI.h; sourceTree = "<group>"; };
+		8FF50C9717C8B56700667E56 /* JSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAPI.m; sourceTree = "<group>"; };
+		8FF50C9817C8B56700667E56 /* JSONHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONHTTPClient.h; sourceTree = "<group>"; };
+		8FF50C9917C8B56700667E56 /* JSONHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONHTTPClient.m; sourceTree = "<group>"; };
+		8FF50C9A17C8B56700667E56 /* JSONModel+networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONModel+networking.h"; sourceTree = "<group>"; };
+		8FF50C9B17C8B56700667E56 /* JSONModel+networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONModel+networking.m"; sourceTree = "<group>"; };
+		8FF50C9D17C8B56700667E56 /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
+		8FF50C9E17C8B56700667E56 /* JSONKeyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKeyMapper.m; sourceTree = "<group>"; };
+		8FF50C9F17C8B56700667E56 /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
+		8FF50CA017C8B56700667E56 /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
+		8FF50CAB17C8B6D500667E56 /* b4Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b4Location.h; sourceTree = "<group>"; };
+		8FF50CAC17C8B6D500667E56 /* b4Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = b4Location.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +138,9 @@
 				8F26401F17C7955900959E02 /* Frameworks */,
 				8F26401E17C7955900959E02 /* Products */,
 			);
+			indentWidth = 3;
 			sourceTree = "<group>";
+			tabWidth = 3;
 		};
 		8F26401E17C7955900959E02 /* Products */ = {
 			isa = PBXGroup;
@@ -130,15 +167,17 @@
 		8F26402617C7955900959E02 /* hilfe */ = {
 			isa = PBXGroup;
 			children = (
+				8FF50C8717C8B56700667E56 /* JSONModel */,
 				8F26402F17C7955900959E02 /* b4AppDelegate.h */,
 				8F26403017C7955900959E02 /* b4AppDelegate.m */,
 				8F26403817C7955900959E02 /* MainStoryboard_iPhone.storyboard */,
-				8F26403B17C7955900959E02 /* MainStoryboard_iPad.storyboard */,
 				8F26403E17C7955900959E02 /* b4MainViewController.h */,
 				8F26403F17C7955900959E02 /* b4MainViewController.m */,
 				8F26404117C7955900959E02 /* b4FlipsideViewController.h */,
 				8F26404217C7955900959E02 /* b4FlipsideViewController.m */,
 				8F26402717C7955900959E02 /* Supporting Files */,
+				8FF50CAB17C8B6D500667E56 /* b4Location.h */,
+				8FF50CAC17C8B6D500667E56 /* b4Location.m */,
 			);
 			path = hilfe;
 			sourceTree = "<group>";
@@ -174,6 +213,66 @@
 				8F26405317C7955900959E02 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8FF50C8717C8B56700667E56 /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				8FF50C8817C8B56700667E56 /* JSONModel */,
+				8FF50C9117C8B56700667E56 /* JSONModelCategories */,
+				8FF50C9417C8B56700667E56 /* JSONModelLib.h */,
+				8FF50C9517C8B56700667E56 /* JSONModelNetworking */,
+				8FF50C9C17C8B56700667E56 /* JSONModelTransformations */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		8FF50C8817C8B56700667E56 /* JSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				8FF50C8917C8B56700667E56 /* JSONModel.h */,
+				8FF50C8A17C8B56700667E56 /* JSONModel.m */,
+				8FF50C8B17C8B56700667E56 /* JSONModelArray.h */,
+				8FF50C8C17C8B56700667E56 /* JSONModelArray.m */,
+				8FF50C8D17C8B56700667E56 /* JSONModelClassProperty.h */,
+				8FF50C8E17C8B56700667E56 /* JSONModelClassProperty.m */,
+				8FF50C8F17C8B56700667E56 /* JSONModelError.h */,
+				8FF50C9017C8B56700667E56 /* JSONModelError.m */,
+			);
+			path = JSONModel;
+			sourceTree = "<group>";
+		};
+		8FF50C9117C8B56700667E56 /* JSONModelCategories */ = {
+			isa = PBXGroup;
+			children = (
+				8FF50C9217C8B56700667E56 /* NSArray+JSONModel.h */,
+				8FF50C9317C8B56700667E56 /* NSArray+JSONModel.m */,
+			);
+			path = JSONModelCategories;
+			sourceTree = "<group>";
+		};
+		8FF50C9517C8B56700667E56 /* JSONModelNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				8FF50C9617C8B56700667E56 /* JSONAPI.h */,
+				8FF50C9717C8B56700667E56 /* JSONAPI.m */,
+				8FF50C9817C8B56700667E56 /* JSONHTTPClient.h */,
+				8FF50C9917C8B56700667E56 /* JSONHTTPClient.m */,
+				8FF50C9A17C8B56700667E56 /* JSONModel+networking.h */,
+				8FF50C9B17C8B56700667E56 /* JSONModel+networking.m */,
+			);
+			path = JSONModelNetworking;
+			sourceTree = "<group>";
+		};
+		8FF50C9C17C8B56700667E56 /* JSONModelTransformations */ = {
+			isa = PBXGroup;
+			children = (
+				8FF50C9D17C8B56700667E56 /* JSONKeyMapper.h */,
+				8FF50C9E17C8B56700667E56 /* JSONKeyMapper.m */,
+				8FF50C9F17C8B56700667E56 /* JSONValueTransformer.h */,
+				8FF50CA017C8B56700667E56 /* JSONValueTransformer.m */,
+			);
+			path = JSONModelTransformations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +322,7 @@
 			attributes = {
 				CLASSPREFIX = b4;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = erd/G/eschoss;
+				ORGANIZATIONNAME = "#B4mad.Net";
 			};
 			buildConfigurationList = 8F26401817C7955800959E02 /* Build configuration list for PBXProject "hilfe" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -231,6 +330,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = 8F26401417C7955800959E02;
 			productRefGroup = 8F26401E17C7955900959E02 /* Products */;
@@ -253,7 +353,6 @@
 				8F26403517C7955900959E02 /* Default@2x.png in Resources */,
 				8F26403717C7955900959E02 /* Default-568h@2x.png in Resources */,
 				8F26403A17C7955900959E02 /* MainStoryboard_iPhone.storyboard in Resources */,
-				8F26403D17C7955900959E02 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +391,17 @@
 				8F26403117C7955900959E02 /* b4AppDelegate.m in Sources */,
 				8F26404017C7955900959E02 /* b4MainViewController.m in Sources */,
 				8F26404317C7955900959E02 /* b4FlipsideViewController.m in Sources */,
+				8FF50CA117C8B56700667E56 /* JSONModel.m in Sources */,
+				8FF50CA217C8B56700667E56 /* JSONModelArray.m in Sources */,
+				8FF50CA317C8B56700667E56 /* JSONModelClassProperty.m in Sources */,
+				8FF50CA417C8B56700667E56 /* JSONModelError.m in Sources */,
+				8FF50CA517C8B56700667E56 /* NSArray+JSONModel.m in Sources */,
+				8FF50CA617C8B56700667E56 /* JSONAPI.m in Sources */,
+				8FF50CA717C8B56700667E56 /* JSONHTTPClient.m in Sources */,
+				8FF50CA817C8B56700667E56 /* JSONModel+networking.m in Sources */,
+				8FF50CA917C8B56700667E56 /* JSONKeyMapper.m in Sources */,
+				8FF50CAA17C8B56700667E56 /* JSONValueTransformer.m in Sources */,
+				8FF50CAD17C8B6D500667E56 /* b4Location.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +428,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F26402A17C7955900959E02 /* en */,
+				8F26406617C7D7DC00959E02 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -326,22 +437,16 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F26403917C7955900959E02 /* en */,
+				8F26406517C7D7DC00959E02 /* de */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		8F26403B17C7955900959E02 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F26403C17C7955900959E02 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		8F26405317C7955900959E02 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8F26405417C7955900959E02 /* en */,
+				8F26406717C7D7DD00959E02 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -413,7 +518,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hilfe/hilfe-Prefix.pch";
 				INFOPLIST_FILE = "hilfe/hilfe-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -424,7 +531,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "hilfe/hilfe-Prefix.pch";
 				INFOPLIST_FILE = "hilfe/hilfe-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
