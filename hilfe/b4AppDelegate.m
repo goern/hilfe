@@ -12,28 +12,7 @@
 @implementation b4AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-   // initialize defaults
-   NSString *dateKey    = @"dateKey";
-   NSDate *lastRead    = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:dateKey];
-   
-   // https://github.com/MugunthKumar/MKiCloudSync
-   // http://stackoverflow.com/questions/7983411/nsuserdefaults-do-something-on-first-load-only
-   
-   // App first run: set up user defaults.
-   if (lastRead == nil)
-   {
-      NSDictionary *appDefaults  = [NSDictionary dictionaryWithObjectsAndKeys:[NSDate date], dateKey, nil];
-      
-      [[NSUserDefaults standardUserDefaults] setInteger:10 forKey:@"updateFrequency"];
-      [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"updateIfApplicationIsInBackground"];
-      
-      // sync the defaults to disk
-      [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-      [[NSUserDefaults standardUserDefaults] synchronize];
-   }
-   [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:dateKey];
-   
+{   
    return YES;
 }
 
@@ -74,5 +53,6 @@
 {
    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 @end

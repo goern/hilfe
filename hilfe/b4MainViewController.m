@@ -20,129 +20,137 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+   [super viewDidLoad];
 	
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    self.locationManager.delegate = self;
-    
-    self.location = [[CLLocation alloc] init];
-    
-    [self.locationManager startUpdatingLocation];
-    
+   self.locationManager = [[CLLocationManager alloc] init];
+   self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+   self.locationManager.delegate = self;
+   
+   self.location = [[CLLocation alloc] init];
+   
+   [self.locationManager startUpdatingLocation];
+   
 }
 
 - (void)dealloc
 {
-    self.locationManager.delegate = nil;
+   self.locationManager.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   [super didReceiveMemoryWarning];
+   // Dispose of any resources that can be recreated.
 }
 
 // called when the app is moved to the background (user presses the home button) or to the foreground
 //
 - (void)switchToBackgroundMode:(BOOL)background
-{    
-    if (background)
-    {
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"updateIfApplicationIsInBackground"])
-        {
-            [self.locationManager stopUpdatingLocation];
-            self.locationManager.delegate = nil;
-        }
-    }
-    else
-    {
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"updateIfApplicationIsInBackground"])
-        {
-            self.locationManager.delegate = self;
-            [self.locationManager startUpdatingLocation];
-        }
-    }
+{
+   NSLog(@"switching off CLLocationManager Updates");
+   
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+   BOOL updateIfApplicationIsInBackground = [defaults boolForKey:@"updateIfApplicationIsInBackground"];
+   
+   NSLog(@"updateIfApplicationIsInBackground=%d", updateIfApplicationIsInBackground);
+   
+   if (background)
+   {
+      if (!updateIfApplicationIsInBackground)
+      {
+         [self.locationManager stopUpdatingLocation];
+         self.locationManager.delegate = nil;
+      }
+   }
+   else
+   {
+      if (!updateIfApplicationIsInBackground)
+      {
+         self.locationManager.delegate = self;
+         [self.locationManager startUpdatingLocation];
+      }
+   }
 }
 
 #pragma mark - Flipside View Controller
 
 - (void)flipsideViewControllerDidFinish:(b4FlipsideViewController *)controller
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [self.flipsidePopoverController dismissPopoverAnimated:YES];
-        self.flipsidePopoverController = nil;
-    }
+   if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+      [self dismissViewControllerAnimated:YES completion:nil];
+   } else {
+      [self.flipsidePopoverController dismissPopoverAnimated:YES];
+      self.flipsidePopoverController = nil;
+   }
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    self.flipsidePopoverController = nil;
+   self.flipsidePopoverController = nil;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showAlternate"]) {
-        [[segue destinationViewController] setDelegate:self];
-        
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            UIPopoverController *popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
-            self.flipsidePopoverController = popoverController;
-            popoverController.delegate = self;
-        }
-    }
+   if ([[segue identifier] isEqualToString:@"showAlternate"]) {
+      [[segue destinationViewController] setDelegate:self];
+      
+      if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+         UIPopoverController *popoverController = [(UIStoryboardPopoverSegue *)segue popoverController];
+         self.flipsidePopoverController = popoverController;
+         popoverController.delegate = self;
+      }
+   }
 }
 
 - (IBAction)togglePopover:(id)sender
 {
-    if (self.flipsidePopoverController) {
-        [self.flipsidePopoverController dismissPopoverAnimated:YES];
-        self.flipsidePopoverController = nil;
-    } else {
-        [self performSegueWithIdentifier:@"showAlternate" sender:sender];
-    }
+   if (self.flipsidePopoverController) {
+      [self.flipsidePopoverController dismissPopoverAnimated:YES];
+      self.flipsidePopoverController = nil;
+   } else {
+      [self performSegueWithIdentifier:@"showAlternate" sender:sender];
+   }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    if (newLocation)
-    {
-        // make sure the old and new coordinates are different
-        if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
-            (oldLocation.coordinate.longitude != newLocation.coordinate.longitude))
-        {
-            self.location = newLocation;
-            NSLog(@"%@", self.location.description);
-            
-            self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
-            self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
-            
-            b4Location* b4location = [b4Location alloc];
-            b4location.lon = self.lon.text;
-            b4location.lat = self.lat.text;
-            
-            [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
-                                           bodyString: b4location.toJSONString
-                                           completion:^(NSDictionary *json, JSONModelError* e) {
-                                               NSDictionary* result = json[@"result"];
-                                               for (id key in result) { // log the result
-                                                   NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
-                                               }
-                                           }];
-        }
-    }
+   if (newLocation)
+   {
+      // make sure the old and new coordinates are different
+      if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
+          (oldLocation.coordinate.longitude != newLocation.coordinate.longitude))
+      {
+         self.location = newLocation;
+         NSLog(@"%@", self.location.description);
+         
+         self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
+         self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
+         
+         b4Location* b4location = [b4Location alloc];
+         b4location.lon = self.lon.text;
+         b4location.lat = self.lat.text;
+         
+         [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
+                                        bodyString: b4location.toJSONString
+                                        completion:^(NSDictionary *json, JSONModelError* e) {
+                                           NSDictionary* result = json[@"result"];
+                                           for (id key in result) { // log the result
+                                              NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
+                                           }
+                                        }];
+      }
+   }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
+   NSLog(@"didFailWithError: %@", error);
+   UIAlertView *errorAlert = [[UIAlertView alloc]
+                              initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+   [errorAlert show];
 }
 
 
