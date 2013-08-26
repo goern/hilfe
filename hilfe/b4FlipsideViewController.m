@@ -24,9 +24,8 @@
 {
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    
-   BOOL updateIfApplicationIsInBackground = [defaults boolForKey:@"updateIfApplicationIsInBackground"];
-   
-   [_toggleBackgroundButton setOn:updateIfApplicationIsInBackground];
+   [_toggleBackgroundButton setOn:[defaults boolForKey:@"updateIfApplicationIsInBackground"]];
+   [_updateFrequencySlider setValue:[defaults integerForKey:@"updateFrequency"]];
  
    [super viewDidLoad];
 
@@ -51,7 +50,6 @@
    
    BOOL updateIfApplicationIsInBackground = [defaults boolForKey:@"updateIfApplicationIsInBackground"];
    [defaults setBool:!updateIfApplicationIsInBackground forKey:@"updateIfApplicationIsInBackground"];
-
    [defaults synchronize];
 
 }
