@@ -53,14 +53,14 @@
    if (background) {
       if (updateIfApplicationIsInBackground == 0) {
          NSLog(@"switching off CLLocationManager Updates");
-
+         
          [self.locationManager stopUpdatingLocation];
          self.locationManager.delegate = nil;
       }
    } else {
       if (updateIfApplicationIsInBackground == 0) {
          NSLog(@"switching on CLLocationManager Updates");
-
+         
          self.locationManager.delegate = self;
          [self.locationManager startUpdatingLocation];
       }
@@ -115,7 +115,7 @@
       // make sure the old and new coordinates are different
       if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
           (oldLocation.coordinate.longitude != newLocation.coordinate.longitude)) {
-
+         
          NSLog(@"%@", self.location.description);
          
          // shall we post to webservice?
@@ -130,6 +130,11 @@
          b4Location* b4location = [b4Location alloc];
          b4location.lon = self.lon.text;
          b4location.lat = self.lat.text;
+          
+         self.settings.text = [NSString stringWithFormat:@"bg=%d, f=%d, post=%d",
+                                 [defaults boolForKey:@"updateIfApplicationIsInBackground"],
+                                 [defaults integerForKey:@"updateFrequency"],
+                                 [defaults boolForKey:@"postToWebservice"]];
          
          if (postToWebservice) {
             [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"

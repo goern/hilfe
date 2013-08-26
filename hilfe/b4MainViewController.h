@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lat;
 @property (weak, nonatomic) IBOutlet UILabel *lon;
 
+@property (weak, nonatomic) IBOutlet UILabel *settings;
+
 - (void)switchToBackgroundMode:(BOOL)background;
 
 @end

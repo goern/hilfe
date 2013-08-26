@@ -43,15 +43,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-KJ-bJU">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="trailing" secondItem="EaQ-mA-v7K" secondAttribute="trailing" type="default" id="0kn-P3-VJh"/>
+                            <constraint firstAttribute="bottom" secondItem="Kd3-KJ-bJU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2bW-s0-Ge4"/>
                             <constraint firstItem="mmd-zR-NZR" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="7nw-hn-ptE"/>
                             <constraint firstItem="EaQ-mA-v7K" firstAttribute="top" secondItem="mmd-zR-NZR" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="DRp-sE-iUo"/>
                             <constraint firstItem="EaQ-mA-v7K" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EcL-yi-idu"/>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="top" secondItem="EaQ-mA-v7K" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="JYn-cl-j2m"/>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="KV9-kc-lvC"/>
+                            <constraint firstItem="Kd3-KJ-bJU" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="RBP-Wr-fhU"/>
                             <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="apl-1S-UOC"/>
                             <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="bcr-if-aDO"/>
                             <constraint firstItem="mmd-zR-NZR" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="u1h-GP-EMf"/>
@@ -60,6 +67,7 @@
                     <connections>
                         <outlet property="lat" destination="b9o-ey-eEW" id="Nqw-iC-mlK"/>
                         <outlet property="lon" destination="EaQ-mA-v7K" id="FsF-y9-WR4"/>
+                        <outlet property="settings" destination="Kd3-KJ-bJU" id="91p-s7-0Jn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
