@@ -28,9 +28,21 @@
    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    
+   // dump whole user defaults
+   NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
+   NSString *bundleId = [bundleInfo objectForKey: @"CFBundleIdentifier"];
+   
+   NSUserDefaults *appUserDefaults = [[NSUserDefaults alloc] init];
+   NSLog(@"Start dumping userDefaults for %@", bundleId);
+   NSLog(@"userDefaults dump: %@", [appUserDefaults persistentDomainForName: bundleId]);
+   NSLog(@"Finished dumping userDefaults for %@", bundleId);
+   // [appUserDefaults release];
+   
    // inform our view controller we are entering the background
-   b4MainViewController *mainViewController = (b4MainViewController *)self.navController.visibleViewController;
-   [mainViewController switchToBackgroundMode:YES];
+   UIWindow *window = [UIApplication sharedApplication].keyWindow;
+   b4MainViewController *visibleViewController = (b4MainViewController *) window.rootViewController;
+   
+   [visibleViewController switchToBackgroundMode:YES];
    
    NSLog(@"now in background");
 }
@@ -40,9 +52,12 @@
    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
    NSLog(@"to foreground");
    
-   // inform our view controller we are back from the background
-   b4MainViewController *mainViewController = (b4MainViewController *)self.navController.visibleViewController;
-   [mainViewController switchToBackgroundMode:NO];}
+   // inform our view controller we are entering the background
+   UIWindow *window = [UIApplication sharedApplication].keyWindow;
+   b4MainViewController *visibleViewController = (b4MainViewController *)window.rootViewController;
+   
+   [visibleViewController switchToBackgroundMode:NO];
+}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {

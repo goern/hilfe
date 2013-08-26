@@ -44,29 +44,23 @@
 }
 
 // called when the app is moved to the background (user presses the home button) or to the foreground
-//
 - (void)switchToBackgroundMode:(BOOL)background
 {
-   NSLog(@"switching off CLLocationManager Updates");
-   
+   // shall we update in the background?
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-   
    BOOL updateIfApplicationIsInBackground = [defaults boolForKey:@"updateIfApplicationIsInBackground"];
    
-   NSLog(@"updateIfApplicationIsInBackground=%d", updateIfApplicationIsInBackground);
-   
-   if (background)
-   {
-      if (!updateIfApplicationIsInBackground)
-      {
+   if (background) {
+      if (updateIfApplicationIsInBackground == 0) {
+         NSLog(@"switching off CLLocationManager Updates");
+
          [self.locationManager stopUpdatingLocation];
          self.locationManager.delegate = nil;
       }
-   }
-   else
-   {
-      if (!updateIfApplicationIsInBackground)
-      {
+   } else {
+      if (updateIfApplicationIsInBackground == 0) {
+         NSLog(@"switching on CLLocationManager Updates");
+
          self.locationManager.delegate = self;
          [self.locationManager startUpdatingLocation];
       }
@@ -117,14 +111,18 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-   if (newLocation)
-   {
+   if (newLocation) {
       // make sure the old and new coordinates are different
       if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
-          (oldLocation.coordinate.longitude != newLocation.coordinate.longitude))
-      {
-         self.location = newLocation;
+          (oldLocation.coordinate.longitude != newLocation.coordinate.longitude)) {
+
          NSLog(@"%@", self.location.description);
+         
+         // shall we post to webservice?
+         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+         BOOL postToWebservice = [defaults boolForKey:@"postToWebservice"];
+         
+         self.location = newLocation;
          
          self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
          self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
@@ -133,14 +131,16 @@
          b4location.lon = self.lon.text;
          b4location.lat = self.lat.text;
          
-         [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
-                                        bodyString: b4location.toJSONString
-                                        completion:^(NSDictionary *json, JSONModelError* e) {
-                                           NSDictionary* result = json[@"result"];
-                                           for (id key in result) { // log the result
-                                              NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
-                                           }
-                                        }];
+         if (postToWebservice) {
+            [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
+                                           bodyString: b4location.toJSONString
+                                           completion:^(NSDictionary *json, JSONModelError* e) {
+                                              NSDictionary* result = json[@"result"];
+                                              for (id key in result) { // FIXME
+                                                 NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
+                                              }
+                                           }];
+         }
       }
    }
 }
