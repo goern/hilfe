@@ -61,8 +61,6 @@
 		8F26404A17C7955900959E02 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8F26406117C7C99800959E02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8F26406317C7CDE300959E02 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		8F26406517C7D7DC00959E02 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		8F26406617C7D7DC00959E02 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8F777BD317CBC7550062870D /* hilfeApplicationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hilfeApplicationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F777BD917CBC7550062870D /* hilfeApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hilfeApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		8F777BDB17CBC7550062870D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -410,7 +408,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F26402A17C7955900959E02 /* en */,
-				8F26406617C7D7DC00959E02 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -419,7 +416,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				8F26403917C7955900959E02 /* en */,
-				8F26406517C7D7DC00959E02 /* de */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
