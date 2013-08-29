@@ -12,8 +12,9 @@
 
 #import "b4FlipsideViewController.h"
 #import "b4Location.h"
+#import "StatHat.h"
 
-@interface b4MainViewController : UIViewController <b4FlipsideViewControllerDelegate, UIPopoverControllerDelegate, CLLocationManagerDelegate>
+@interface b4MainViewController : UIViewController <b4FlipsideViewControllerDelegate, UIPopoverControllerDelegate, CLLocationManagerDelegate, StatHatDelegate>
 
 @property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
 

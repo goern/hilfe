@@ -86,6 +86,8 @@
    b4MainViewController *visibleViewController = (b4MainViewController *)window.rootViewController;
    
    [visibleViewController switchToBackgroundMode:NO];
+   
+   [visibleViewController setUpdateInterval:[[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"]];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

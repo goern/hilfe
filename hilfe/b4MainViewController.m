@@ -11,7 +11,6 @@
 //
 
 #import "b4MainViewController.h"
-#import "StatHat.h"
 
 @implementation b4MainViewController
 
@@ -82,6 +81,23 @@
 
 #pragma mark - Flipside View Controller
 
+- (void)setupLocationTimer:(NSTimeInterval)currnetUpdateInterval
+{
+   if (self.locationTimer != nil) {
+      [self.locationTimer invalidate];
+      self.locationTimer = nil;
+      
+   }
+   
+   // and set up a new one.
+   self.updateInterval = currnetUpdateInterval;
+   self.locationTimer = [NSTimer scheduledTimerWithTimeInterval: self.updateInterval
+                                                         target: self
+                                                       selector: @selector(updateLocations)
+                                                       userInfo: nil
+                                                        repeats: YES];
+}
+
 - (void)flipsideViewControllerDidFinish:(b4FlipsideViewController *)controller
 {
    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -99,13 +115,7 @@
       [self.locationTimer invalidate];
       self.locationTimer = nil;
       
-      // and set up a new one.
-      self.updateInterval = currnetUpdateInterval;
-      self.locationTimer = [NSTimer scheduledTimerWithTimeInterval: self.updateInterval
-                                                            target: self
-                                                          selector: @selector(updateLocations)
-                                                          userInfo: nil
-                                                           repeats: YES];
+      [self setupLocationTimer:currnetUpdateInterval];
    }
 }
 
@@ -189,6 +199,20 @@
  
    [StatHat postEZStat:@"CLLocationManager failWithError" withCount:1.0 forUser:@"goern@b4mad.net" delegate:self];
 
+   // stop the locationTimer
+   [self.locationTimer invalidate];
+   self.locationTimer = nil;
+}
+
+#pragma mark -
+#pragma mark StatHatDelegate Methods
+
+- (void)statHat:(StatHat*)sh postFinished:(NSString*)jsonResponse {
+   NSLog(@"StatHat response: %@", jsonResponse);
+}
+
+- (void)statHat:(StatHat*)sh postError:(NSError*)err {
+   NSLog(@"StatHat error: %@", err);
 }
 
 @end
