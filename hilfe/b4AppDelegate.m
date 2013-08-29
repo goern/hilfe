@@ -2,6 +2,19 @@
 //  b4AppDelegate.m
 //  hilfe
 //
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation; either version 2 of the License.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License along
+//  with this program; if not, write to the Free Software Foundation, Inc.,
+//  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//
 //  Created by Christoph Görn on 23.08.13.
 //  Copyright (c) 2013 erd/G/eschoss. All rights reserved.
 //
@@ -9,10 +22,39 @@
 #import "b4AppDelegate.h"
 #import "b4MainViewController.h"
 
+@interface NSString (UUID)
+
++ (NSString *)uuid;
+
+@end
+
+@implementation NSString (UUID)
+
++ (NSString *)uuid
+{
+   NSString *uuidString = nil;
+   CFUUIDRef uuid = CFUUIDCreate(NULL);
+   if (uuid) {
+      uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
+      CFRelease(uuid);
+   }
+   
+   return uuidString;
+}
+
+@end
+
 @implementation b4AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{   
+{
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+   if ([defaults objectForKey:@"UUID_USER_DEFAULTS_KEY"] == nil) {
+      [defaults setObject:[NSString uuid] forKey:@"UUID_USER_DEFAULTS_KEY"];
+      [defaults synchronize];
+   }
+   
    return YES;
 }
 
@@ -57,6 +99,8 @@
    b4MainViewController *visibleViewController = (b4MainViewController *)window.rootViewController;
    
    [visibleViewController switchToBackgroundMode:NO];
+   
+   [visibleViewController setUpdateInterval:[[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"]];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

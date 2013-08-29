@@ -43,15 +43,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-KJ-bJU">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="trailing" secondItem="EaQ-mA-v7K" secondAttribute="trailing" type="default" id="0kn-P3-VJh"/>
+                            <constraint firstAttribute="bottom" secondItem="Kd3-KJ-bJU" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="2bW-s0-Ge4"/>
                             <constraint firstItem="mmd-zR-NZR" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="7nw-hn-ptE"/>
                             <constraint firstItem="EaQ-mA-v7K" firstAttribute="top" secondItem="mmd-zR-NZR" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="DRp-sE-iUo"/>
                             <constraint firstItem="EaQ-mA-v7K" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EcL-yi-idu"/>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="top" secondItem="EaQ-mA-v7K" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="JYn-cl-j2m"/>
                             <constraint firstItem="b9o-ey-eEW" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="KV9-kc-lvC"/>
+                            <constraint firstItem="Kd3-KJ-bJU" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="RBP-Wr-fhU"/>
                             <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="apl-1S-UOC"/>
                             <constraint firstAttribute="bottom" secondItem="10" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="bcr-if-aDO"/>
                             <constraint firstItem="mmd-zR-NZR" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="u1h-GP-EMf"/>
@@ -60,6 +67,7 @@
                     <connections>
                         <outlet property="lat" destination="b9o-ey-eEW" id="Nqw-iC-mlK"/>
                         <outlet property="lon" destination="EaQ-mA-v7K" id="FsF-y9-WR4"/>
+                        <outlet property="settings" destination="Kd3-KJ-bJU" id="91p-s7-0Jn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -104,10 +112,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Set the frequency of location updates." translatesAutoresizingMaskIntoConstraints="NO" id="PB7-9a-DYM">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Set the pause between location updates. This is measured in seconds." translatesAutoresizingMaskIntoConstraints="NO" id="PB7-9a-DYM">
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="52" id="Nxf-MX-THD"/>
+                                    <constraint firstAttribute="height" constant="66" id="VDa-QA-p26"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -117,7 +125,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="IEe-pH-oQ9">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="1" maxValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="IEe-pH-oQ9" customClass="MNEValueTrackingSlider">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="owR-Hp-ZvI"/>
                                 </constraints>
@@ -156,6 +164,33 @@
             <point key="canvasLocation" x="368" y="182"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="MNEValueTrackingSlider" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MNEValueTrackingSlider.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="b4FlipsideViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/b4FlipsideViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="action" name="toggleBackgroundButton:"/>
+                <relationship kind="outlet" name="toggleBackgroundButton" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="updateFrequencySlider" candidateClass="MNEValueTrackingSlider"/>
+            </relationships>
+        </class>
+        <class className="b4MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/b4MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="togglePopover:"/>
+                <relationship kind="outlet" name="lat" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lon" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="settings" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
