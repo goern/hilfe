@@ -5,6 +5,8 @@
 //  Created by Christoph Görn on 23.08.13.
 //  Copyright (c) 2013 erd/G/eschoss. All rights reserved.
 //
+// http://blog.neuwert-media.com/2011/04/customized-uislider-with-visual-value-tracking/
+// https://github.com/mneuwert/iOS-Custom-Controls/tree/master/ValueTrackingSlider
 
 #import "b4FlipsideViewController.h"
 
@@ -13,6 +15,8 @@
 @end
 
 @implementation b4FlipsideViewController
+
+@synthesize updateFrequencySlider;
 
 - (void)awakeFromNib
 {
@@ -25,7 +29,9 @@
    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    
    [_toggleBackgroundButton setOn:[defaults boolForKey:@"updateIfApplicationIsInBackground"]];
-   [_updateFrequencySlider setValue:[defaults integerForKey:@"updateFrequency"]];
+   [updateFrequencySlider setValue:[defaults integerForKey:@"updateFrequency"]];
+   updateFrequencySlider.minimumValue = 1;
+   updateFrequencySlider.maximumValue = 300;
  
    [super viewDidLoad];
 
@@ -54,7 +60,6 @@
 
 }
 
-// http://www.techrepublic.com/blog/ios-app-builder/better-code-uislider-basics-for-apple-ios/
 - (IBAction)sliderChanged:(id)sender
 {
    UISlider *slider = (UISlider *)sender;

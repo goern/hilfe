@@ -28,16 +28,20 @@
    
    [self.locationManager startUpdatingLocation];
    
-   self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:[[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"]
-                                 target:self
-                                 selector:@selector(updateLocations)
-                                 userInfo:nil
-                                 repeats:NO];
+   self.updateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"];
+   
+   
+   // set up a timer so that the location is only grepped all 'updateFrequency' seconds
+   self.locationTimer = [NSTimer scheduledTimerWithTimeInterval: self.updateInterval
+                                                         target: self
+                                                       selector: @selector(updateLocations)
+                                                       userInfo: nil
+                                                        repeats: YES];
 }
 
 - (void)updateLocations
 {
-   NSLog(@"locationTimer fired");
+   [self.locationManager startUpdatingLocation];
 }
 
 - (void)dealloc
@@ -85,6 +89,23 @@
       [self.flipsidePopoverController dismissPopoverAnimated:YES];
       self.flipsidePopoverController = nil;
    }
+   
+   // check if 'updateFrequency' has changed and reset the locationTimer
+   NSTimeInterval currnetUpdateInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"];
+   
+   if (self.updateInterval != currnetUpdateInterval) {
+      // so it changed, get rid of the old timer
+      [self.locationTimer invalidate];
+      self.locationTimer = nil;
+      
+      // and set up a new one.
+      self.updateInterval = currnetUpdateInterval;
+      self.locationTimer = [NSTimer scheduledTimerWithTimeInterval: self.updateInterval
+                                                            target: self
+                                                          selector: @selector(updateLocations)
+                                                          userInfo: nil
+                                                           repeats: YES];
+   }
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -115,47 +136,45 @@
    }
 }
 
+#pragma mark -
+#pragma mark CLLocationManagerDelegate Methods
 - (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
+     didUpdateLocations:(NSArray *)locations
 {
-   if (newLocation) {
-      // make sure the old and new coordinates are different
-      if ((oldLocation.coordinate.latitude != newLocation.coordinate.latitude) &&
-          (oldLocation.coordinate.longitude != newLocation.coordinate.longitude)) {
-         
-         NSLog(@"%@", self.location.description);
-         
-         // shall we post to webservice?
-         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-         BOOL postToWebservice = [defaults boolForKey:@"postToWebservice"];
-         
-         self.location = newLocation;
-         
-         self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
-         self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
-         
-         b4Location* b4location = [b4Location alloc];
-         b4location.lon = self.lon.text;
-         b4location.lat = self.lat.text;
-          
-         self.settings.text = [NSString stringWithFormat:@"bg=%d, f=%d, post=%d",
-                                 [defaults boolForKey:@"updateIfApplicationIsInBackground"],
-                                 [defaults integerForKey:@"updateFrequency"],
-                                 [defaults boolForKey:@"postToWebservice"]];
-         
-         if (postToWebservice) {
-            [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
-                                           bodyString: b4location.toJSONString
-                                           completion:^(NSDictionary *json, JSONModelError* e) {
-                                              NSDictionary* result = json[@"result"];
-                                              for (id key in result) { // FIXME
-                                                 NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
-                                              }
-                                           }];
-         }
+   self.location = [locations lastObject];
+   
+   if (self.location != nil) {
+      NSLog(@"%@", self.location.description);
+      
+      // shall we post to webservice?
+      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+      BOOL postToWebservice = [defaults boolForKey:@"postToWebservice"];
+      
+      self.lat.text = [NSString stringWithFormat:@"%f", self.location.coordinate.latitude];
+      self.lon.text = [NSString stringWithFormat:@"%f", self.location.coordinate.longitude];
+      
+      b4Location* b4location = [b4Location alloc];
+      b4location.lon = self.lon.text;
+      b4location.lat = self.lat.text;
+      
+      self.settings.text = [NSString stringWithFormat:@"bg=%d, f=%d, post=%d",
+                            [defaults boolForKey:@"updateIfApplicationIsInBackground"],
+                            [defaults integerForKey:@"updateFrequency"],
+                            [defaults boolForKey:@"postToWebservice"]];
+      
+      if (postToWebservice) {
+         [JSONHTTPClient postJSONFromURLWithString: @"http://localhost:3000/locations"
+                                        bodyString: b4location.toJSONString
+                                        completion:^(NSDictionary *json, JSONModelError* e) {
+                                           NSDictionary* result = json[@"result"];
+                                           for (id key in result) { // FIXME
+                                              NSLog(@"key: %@, value: %@ \n", key, [result objectForKey:key]);
+                                           }
+                                        }];
       }
    }
+   
+   [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

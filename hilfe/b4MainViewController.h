@@ -23,6 +23,9 @@
 @property (nonatomic, retain) CLLocation *lastLocation;
 @property (strong, nonatomic) NSTimer *locationTimer;
 
+// http://stackoverflow.com/questions/12014358/what-does-property-with-weak-attribute-must-be-of-object-type-really-mean
+@property (nonatomic) NSTimeInterval updateInterval;
+
 @property (weak, nonatomic) IBOutlet UILabel *lat;
 @property (weak, nonatomic) IBOutlet UILabel *lon;
 

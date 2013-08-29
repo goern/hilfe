@@ -1,0 +1,3 @@
+[submodule "iOS-Custom-Controls"]
+	path = iOS-Custom-Controls
+	url = https://github.com/mcrispino/iOS-Custom-Controls.git
