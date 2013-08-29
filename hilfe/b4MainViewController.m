@@ -12,11 +12,9 @@
 
 #import "b4MainViewController.h"
 
-@interface b4MainViewController ()
-
-@end
-
 @implementation b4MainViewController
+
+@synthesize locationTimer;
 
 - (void)viewDidLoad
 {
@@ -30,6 +28,16 @@
    
    [self.locationManager startUpdatingLocation];
    
+   self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:[[NSUserDefaults standardUserDefaults] integerForKey:@"updateFrequency"]
+                                 target:self
+                                 selector:@selector(updateLocations)
+                                 userInfo:nil
+                                 repeats:NO];
+}
+
+- (void)updateLocations
+{
+   NSLog(@"locationTimer fired");
 }
 
 - (void)dealloc

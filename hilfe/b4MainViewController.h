@@ -17,10 +17,10 @@
 
 @property (strong, nonatomic) UIPopoverController *flipsidePopoverController;
 
+// all the Location stuff related stuff stuff
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @property (nonatomic, retain) CLLocation *lastLocation;
-
 @property (strong, nonatomic) NSTimer *locationTimer;
 
 @property (weak, nonatomic) IBOutlet UILabel *lat;
