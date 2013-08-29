@@ -11,6 +11,7 @@
 //
 
 #import "b4MainViewController.h"
+#import "StatHat.h"
 
 @interface b4MainViewController ()
 
@@ -152,11 +153,15 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-   NSLog(@"didFailWithError: %@", error);
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+   NSLog(@"didFailWithError: %@ (%@)", error, [defaults objectForKey:@"UUID_USER_DEFAULTS_KEY"]);
    UIAlertView *errorAlert = [[UIAlertView alloc]
                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
    [errorAlert show];
-}
+ 
+   [StatHat postEZStat:@"CLLocationManager failWithError" withCount:1.0 forUser:@"goern@b4mad.net" delegate:self];
 
+}
 
 @end

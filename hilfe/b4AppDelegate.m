@@ -9,10 +9,39 @@
 #import "b4AppDelegate.h"
 #import "b4MainViewController.h"
 
+@interface NSString (UUID)
+
++ (NSString *)uuid;
+
+@end
+
+@implementation NSString (UUID)
+
++ (NSString *)uuid
+{
+   NSString *uuidString = nil;
+   CFUUIDRef uuid = CFUUIDCreate(NULL);
+   if (uuid) {
+      uuidString = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, uuid));
+      CFRelease(uuid);
+   }
+   
+   return uuidString;
+}
+
+@end
+
 @implementation b4AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{   
+{
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+   if ([defaults objectForKey:@"UUID_USER_DEFAULTS_KEY"] == nil) {
+      [defaults setObject:[NSString uuid] forKey:@"UUID_USER_DEFAULTS_KEY"];
+      [defaults synchronize];
+   }
+   
    return YES;
 }
 

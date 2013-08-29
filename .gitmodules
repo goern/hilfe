@@ -1,0 +1,3 @@
+[submodule "shlibs"]
+	path = shlibs
+	url = https://github.com/stathat/shlibs.git

@@ -21,6 +21,8 @@
 		8F26404317C7955900959E02 /* b4FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F26404217C7955900959E02 /* b4FlipsideViewController.m */; };
 		8F26406217C7C99800959E02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406117C7C99800959E02 /* CoreLocation.framework */; };
 		8F26406417C7CDE300959E02 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26406317C7CDE300959E02 /* iAd.framework */; };
+		8F2E86FD17CF5551003AFF6F /* StatHat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E86FC17CF5551003AFF6F /* StatHat.m */; };
+		8F2E86FE17CF5551003AFF6F /* StatHat.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F2E86FC17CF5551003AFF6F /* StatHat.m */; };
 		8F777BD417CBC7550062870D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26404A17C7955900959E02 /* SenTestingKit.framework */; };
 		8F777BD517CBC7550062870D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26402017C7955900959E02 /* UIKit.framework */; };
 		8F777BD617CBC7550062870D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F26402217C7955900959E02 /* Foundation.framework */; };
@@ -61,6 +63,8 @@
 		8F26404A17C7955900959E02 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		8F26406117C7C99800959E02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8F26406317C7CDE300959E02 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		8F2E86FB17CF5551003AFF6F /* StatHat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatHat.h; path = shlibs/objc/StatHat.h; sourceTree = SOURCE_ROOT; };
+		8F2E86FC17CF5551003AFF6F /* StatHat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatHat.m; path = shlibs/objc/StatHat.m; sourceTree = SOURCE_ROOT; };
 		8F777BD317CBC7550062870D /* hilfeApplicationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hilfeApplicationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F777BD917CBC7550062870D /* hilfeApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "hilfeApplicationTests-Info.plist"; sourceTree = "<group>"; };
 		8F777BDB17CBC7550062870D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 		8F26402617C7955900959E02 /* hilfe */ = {
 			isa = PBXGroup;
 			children = (
+				8F2E86FB17CF5551003AFF6F /* StatHat.h */,
+				8F2E86FC17CF5551003AFF6F /* StatHat.m */,
 				8FF50C8717C8B56700667E56 /* JSONModel */,
 				8F26402F17C7955900959E02 /* b4AppDelegate.h */,
 				8F26403017C7955900959E02 /* b4AppDelegate.m */,
@@ -390,6 +396,7 @@
 				8FF50CA917C8B56700667E56 /* JSONKeyMapper.m in Sources */,
 				8FF50CAA17C8B56700667E56 /* JSONValueTransformer.m in Sources */,
 				8FF50CAD17C8B6D500667E56 /* b4Location.m in Sources */,
+				8F2E86FD17CF5551003AFF6F /* StatHat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F777BDF17CBC7550062870D /* hilfeApplicationTests.m in Sources */,
+				8F2E86FE17CF5551003AFF6F /* StatHat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +581,7 @@
 				8F777BE217CBC7550062870D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
