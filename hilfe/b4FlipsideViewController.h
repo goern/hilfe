@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MNEValueTrackingSlider.h"
 
 @class b4FlipsideViewController;
 
@@ -19,7 +20,7 @@
 @property (weak, nonatomic) id <b4FlipsideViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UISwitch *toggleBackgroundButton;
-@property (nonatomic, strong) IBOutlet UISlider *updateFrequencySlider;
+@property (nonatomic, strong) IBOutlet MNEValueTrackingSlider *updateFrequencySlider;
 
 - (IBAction)done:(id)sender;
 

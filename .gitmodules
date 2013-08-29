@@ -1,3 +1,6 @@
 [submodule "shlibs"]
 	path = shlibs
 	url = https://github.com/stathat/shlibs.git
+[submodule "iOS-Custom-Controls"]
+	path = iOS-Custom-Controls
+	url = https://github.com/mcrispino/iOS-Custom-Controls.git
